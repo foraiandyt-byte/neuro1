@@ -2,7 +2,9 @@ import streamlit as st
 import google.generativeai as genai
 
 # Configure Gemini
-genai.configure(api_key="AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw")
+import os
+
+os.environ["GEMINI_API_KEY"] = "AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw"
 
 # Create model
 model = genai.GenerativeModel("gemini-2.5-flash")
