@@ -1,6 +1,6 @@
 import streamlit as st
 import google
-from google import generativeai as genai
+from google import genai
 
 # Configure Gemini
 import os
