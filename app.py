@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from google.generativeai import genai
+from google import genai
 
 os.environ["GEMINI_API_KEY"] = "AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw"
 
@@ -8,7 +8,7 @@ os.environ["GEMINI_API_KEY"] = "AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw"
 model = genai.GenerativeModel("gemini-2.5-flash")
 bot_name = "Neuro"
 
-st.title(f"🤖 {bot_name} - AI Chatbot")
+st.title(f"🤖 {bot_name} - Made by Harris S")
 st.write("Type your message below 👇")
 
 # Store chat history
