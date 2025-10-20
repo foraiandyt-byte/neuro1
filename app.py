@@ -2,7 +2,7 @@ import streamlit as st
 import google as genai
 
 # Configure Gemini
-genai.configure(api_key="AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw")
+genai(api_key="AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw")
 
 # Create model
 model = genai.GenerativeModel("gemini-2.5-flash")
@@ -37,4 +37,5 @@ if user_msg:
     # Display bot message
     st.chat_message("assistant").write(bot_reply)
     st.session_state.messages.append({"role": "assistant", "content": bot_reply})
+
 
