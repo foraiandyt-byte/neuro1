@@ -1,6 +1,6 @@
 import streamlit as st
 import os
-from google.genai import genai
+from google import genai
 
 os.environ["GEMINI_API_KEY"] = "AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw"
 
