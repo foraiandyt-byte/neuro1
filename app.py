@@ -1,4 +1,5 @@
 import streamlit as st
+import google
 from google import genai
 
 # Configure Gemini
