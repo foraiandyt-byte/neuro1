@@ -5,7 +5,7 @@ from google import genai
 os.environ["GEMINI_API_KEY"] = "AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw"
 
 # Create model
-model = genai.GenerativeModel("gemini-2.5-flash")
+model = genai.GenerativeModel('gemini-2.5-flash')
 bot_name = "Neuro"
 
 st.title(f"🤖 {bot_name} - Made by Harris S")
