@@ -5,8 +5,8 @@ from google import genai
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-st.title("Gemini Chatbot 💬")
-
+st.title("Neuro")
+st.subheader("Made by Harris")
 # Input box
 user_input = st.text_input("Type your message:")
 
