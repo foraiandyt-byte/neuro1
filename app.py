@@ -22,13 +22,8 @@ if user_msg:
     st.chat_message("user").write(user_msg)
     st.session_state.messages.append({"role": "user", "content": user_msg})
 
-
-    if "your name" in user_msg.lower():
-        bot_reply = f"My name is {bot_name}!"
-    else:
-        response = model.generate_content(user_msg)
-        bot_reply = response.text
-
+    # Generate a response using the genai library
+    bot_reply = genai.generate_response(model=model, prompt=user_msg)
 
     st.chat_message("assistant").write(bot_reply)
     st.session_state.messages.append({"role": "assistant", "content": bot_reply})
