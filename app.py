@@ -1,34 +1,39 @@
 import streamlit as st
 from google import genai
 
-client =genai.Client(api_key="AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw")
+# Configure your Gemini API key
+genai.api_key = "AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw"
 
-model = 'gemini-2.5-flash'
-bot_name = "Neuro"
+# Initialize chat history
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
 
-st.title(f"🤖 {bot_name} - Made by Harris S")
-st.write("Type your message below 👇")
+st.title("Gemini Chatbot 💬")
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+# Input box
+user_input = st.text_input("Type your message:")
 
-for chat in st.session_state.messages:
-    st.chat_message(chat["role"]).write(chat["content"])
-
-user_msg = st.chat_input("Say something...")
-
-user_input = input("You: ")
-if user_msg:
-    st.chat_message("user").write(user_msg)
-    st.session_state.messages.append({"role": "user", "content": user_msg})
-
-    # Generate a response using the genai library
-    response = client.models.generate_content(
-            model="gemini-2.5-flash",   # You can change to "gemini-1.5-pro" for deeper answers
-            contents=user_input
+# Send button
+if st.button("Send") and user_input:
+    # Add user message
+    st.session_state.chat_history.append(f"You: {user_input}")
+    
+    # Call Gemini API
+    try:
+        response = genai.Text.generate(
+            model="gemini-2.5",
+            prompt=user_input,
+            max_output_tokens=200
         )
+        bot_reply = response.text
+    except Exception as e:
+        bot_reply = f"Error: {e}"
 
-    bot_reply = response  # Assign the generated response to bot_reply
-    st.chat_message("assistant").write(bot_reply)
-    st.session_state.messages.append({"role": "assistant", "content": bot_reply})
+    # Add bot response
+    st.session_state.chat_history.append(f"Bot: {bot_reply}")
+
+# Display chat history
+for msg in st.session_state.chat_history:
+    st.write(msg)
+
     
