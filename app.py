@@ -1,8 +1,7 @@
 import streamlit as st
-import os
 from google import genai
 
-os.environ["GEMINI_API_KEY"] = "AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw"
+client =genai.Client(api_key="AIzaSyALEjQpQpIEtZcEHCYrGOizaVITtD0Atxw")
 
 model = 'gemini-2.5-flash'
 bot_name = "Neuro"
@@ -18,13 +17,18 @@ for chat in st.session_state.messages:
 
 user_msg = st.chat_input("Say something...")
 
+user_input = input("You: ")
 if user_msg:
     st.chat_message("user").write(user_msg)
     st.session_state.messages.append({"role": "user", "content": user_msg})
 
     # Generate a response using the genai library
-    bot_reply = genai.generate_response(model=model, prompt=user_msg)
+    response = client.models.generate_content(
+            model="gemini-2.5-flash",   # You can change to "gemini-1.5-pro" for deeper answers
+            contents=user_input
+        )
 
+    bot_reply = response  # Assign the generated response to bot_reply
     st.chat_message("assistant").write(bot_reply)
     st.session_state.messages.append({"role": "assistant", "content": bot_reply})
     
